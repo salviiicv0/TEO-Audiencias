@@ -20,6 +20,14 @@ def test_medias_por_ediciones(audiencias, nombre_programa):
     dicc = medias_por_ediciones(audiencias)
     print(f"La media por ediciones del programa {nombre_programa} es: \n{dicc}")
 
+def test_muestra_evolucion_audiencias(audiencias, nombre_programa):
+    print(f"Evolución de las audiencias de {nombre_programa}")
+    muestra_evolucion_audiencias(audiencias, nombre_programa)
+
+def test_muestra_medias_por_ediciones(audiencias, nombre_programa):
+    print(f"Medias de las audiencias de {nombre_programa} por edición")
+    muestra_medias_por_ediciones(audiencias, nombre_programa)
+
 def main():
     '''
     Función principal
@@ -42,6 +50,12 @@ def main():
     #test de la función media_por_ediciones
     test_medias_por_ediciones(audiencias_gh, "Gran Hermano")
     test_medias_por_ediciones(audiencias_masterchef, "Master Chef")
+    #test de la función muestra_evolucion_audiencias
+    test_muestra_evolucion_audiencias(audiencias_gh, "Gran Hermano")
+    test_muestra_evolucion_audiencias(audiencias_masterchef, "Master Chef")
+    #test de la función muestra_medias_por_ediciones
+    test_muestra_medias_por_ediciones(audiencias_gh, "Gran Hermano")
+    test_muestra_medias_por_ediciones(audiencias_masterchef, "Master Chef")
 
 
 

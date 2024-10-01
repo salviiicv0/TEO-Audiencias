@@ -118,3 +118,60 @@ def medias_por_ediciones(audiencias):
     for edicion, lista_shares in share_por_ediciones.items():
         medias[edicion] = sum(lista_shares) / len(lista_shares)
     return medias
+
+def muestra_evolucion_audiencias(audiencias, nombre_programa):
+    '''
+    Genera una curva con la evolución de las audiencias
+
+    ENTRADA:
+        @param audiencias: lista de audiencias
+        @type audiencias: [Audiencia(int, float)]
+        @param nombre_programa: Nombre del programa
+        @type nombre_programa: str
+
+    SALIDA EN CONSOLA:
+        - gráfica con la evolución de los shares a lo largo del tiempo
+    '''
+    #nos quedamos sólo con los valores de share
+    shares = []
+    for a in audiencias:
+        shares.append(a.share)
+
+    #componemos y visualizamos la gráfica
+    plt.title(f"Evolución de audiencias del programa {nombre_programa}")
+    plt.plot(shares, label='audiencia')
+    plt.legend()
+    plt.show()
+
+def muestra_medias_por_ediciones(audiencias, nombre_programa):
+    '''
+    Genera un diagrama de barras con la media de audiencia de cada edición
+
+    ENTRADA:
+        @param audiencias: lista de audiencias
+        @type audiencias: [Audiencia(int, float)]
+        @param nombre_programa: Nombre del programa
+        @type nombre_programa: str
+    SALIDA EN CONSOLA:
+        - gráfica con las medias por cada edición
+    '''
+
+    #calculamos las medias por cada edición
+    dicc_medias = medias_por_ediciones(audiencias)
+
+    #calculamos la lista de ediciones
+    ediciones = sorted(dicc_medias.keys())
+
+    # generamos una lista de medias con el mismo orden que las ediciones
+    lista_medias = []
+    for e in ediciones:
+        lista_medias.append(dicc_medias[e])
+
+    # componemos y visualizamos la gráfica
+    plt.title(f"Medias de shares por edición del programa {nombre_programa}")
+    plt.xlabel("ediciones")
+    plt.ylabel("medias")
+
+    plt.bar(ediciones, lista_medias)
+    plt.xticks(ediciones, ediciones, fontsize=8)
+    plt.show()
